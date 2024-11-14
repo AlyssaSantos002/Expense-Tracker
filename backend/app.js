@@ -1,6 +1,6 @@
 import express from 'express';
 import connectDB from './db/connect.js';
-import userRoute from './routers/expenses.js';
+import expensesRouter from './routers/expensesRouter.js';
 
 
 //initialization
@@ -12,7 +12,7 @@ connectDB();
 app.use(express.json());
 
 //Routers
-app.use('/auth', userRoute)
+app.use('/', expensesRouter)
 
 //Set constant for port
 const PORT = process.env.PORT || 8000;
