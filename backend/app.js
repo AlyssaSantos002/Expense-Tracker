@@ -14,8 +14,8 @@ app.use(express.json());
 app.use(cors());
 
 //Routers
-app.use('/', expensesRouter)
-app.use('/auth', userRoute)
+app.use('/', expensesRouter);
+app.use('/auth', userRoute);
 
 //Set constant for port
 const PORT = process.env.PORT || 8000;
