@@ -1,10 +1,8 @@
-
 import express from 'express';
+import cors from 'cors';
 import connectDB from './db/connect.js';
 import expensesRouter from './routers/expensesRouter.js';
 import userRoute from './routers/userRouter.js';
-
-
 
 //initialization
 const app = express();
@@ -13,6 +11,7 @@ const app = express();
 connectDB();
 
 app.use(express.json());
+app.use(cors());
 
 //Routers
 app.use('/', expensesRouter)
