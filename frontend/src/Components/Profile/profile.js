@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './profile.css';
 import axios from "axios";
-import auth from '../../images/profile.jpg';
+import { Link } from 'react-router-dom';
+//import auth from '../../images/profile.jpg';
 
 const Profile = () => {
 
@@ -10,12 +11,12 @@ const Profile = () => {
 
     useEffect(() => {
         const storedEmail = localStorage.getItem('userEmail');
-    
+
         if (storedEmail) {
             setEmail(storedEmail);
 
             // If localStorage data is missing, fetch data from the server
-            axios.post('http://localhost:8000/auth/profile', { email: storedEmail })
+            axios.post('/auth/profile', { email: storedEmail })
                 .then(response => {
                     setName(response.data.user.name);
                 })
@@ -23,6 +24,7 @@ const Profile = () => {
                     console.error('Error fetching user details:', error);
                 });
         }
+    
     }, []);
 
     return (
@@ -37,6 +39,11 @@ const Profile = () => {
                     <h4><strong>Email</strong></h4>
                     <p>{email}</p>
                 </div>
+            </div>
+
+            {/* temporary */}
+            <div className="nav-links">
+                <Link to="/home">Go to Home</Link>
             </div>
         </div>
     );

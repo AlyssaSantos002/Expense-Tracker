@@ -16,7 +16,7 @@ const Login = () => {
         };
 
         try {
-            const response = await fetch('http://localhost:8000/auth/login', {
+            const response = await fetch('/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(userData),
@@ -25,8 +25,9 @@ const Login = () => {
 
             const result = await response.json();
             if (response.ok) {
+                localStorage.setItem('userId', result.user._id); // Save userId
                 localStorage.setItem('userEmail', result.user.email);
-                localStorage.setItem('userName,', result.user.name);
+                localStorage.setItem('userName', result.user.name);
                 console.log(result);
                 window.location.href = '/profile';
             } else {

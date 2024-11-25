@@ -5,7 +5,7 @@ export const createExpense = async (req, res) => {
   try {
     const { title, amount, description, date, category, userId } = req.body;
 
-    if (!title || !amount || !description || !date || !category || !userId) {
+    if (!title || !amount || !date || !category || !userId) {
       return res.status(400).json({ success: false, message: "All fields are required" });
     }
 
@@ -33,6 +33,11 @@ export const getExpenses = async (req, res) => {
     if (category) query.category = category;
 
     const expenses = await Expense.find(query);
+
+     // Check if any expenses were found
+     if (expenses.length === 0) {
+      return res.status(200).json({ success: true, message: "No expenses found", expenses });
+    }
     res.status(200).json({ success: true, expenses });
   } catch (error) {
     res.status(500).json({ success: false, message: "Error fetching expenses", error: error.message });
@@ -56,183 +61,16 @@ export const updateExpense = async (req, res) => {
 
 // Delete Expense
 export const deleteExpense = async (req, res) => {
+  const { id } = req.params;
   try {
-    const { id } = req.params;
-
-    const expense = await Expense.findByIdAndDelete(id);
-    if (!expense) return res.status(404).json({ success: false, message: "Expense not found" });
-
-    res.status(200).json({ success: true, message: "Expense deleted successfully" });
+    // Delete the expense from the database
+    const deletedExpense = await Expense.findByIdAndDelete(id);
+    if (!deletedExpense) {
+      return res.status(404).json({ message: 'Expense not found' });
+    }
+    res.status(200).json({ message: 'Expense deleted successfully' });
   } catch (error) {
-    res.status(500).json({ success: false, message: "Error deleting expense", error: error.message });
+    res.status(500).json({ message: 'Server error', error });
   }
 };
-
-
-// import Expense from '../model/ExpenseModel.js';
-// import User from '../model/UserModel.js';
-
-// //add new expense
-// export const createExpense = async (req, res) => {
-//     try {
-//         const {title, amount, description, date, category, userId} = req.body;
-
-//         console.log(title, amount, description, date, category, userId);
-
-//         if (!title || !amount || !description || !date || !category) {
-//             return res.status(408).json({
-//                 success: false,
-//                 messages: "Please Fill all fields",
-//             });
-//         }
-
-//         const user = await User.findById(userId);
-
-//         if (!user) {
-//             return res.status(400).json({
-//                 success: false,
-//                 message: "User not found",
-//             });
-//         }
-
-//         let newExpense = await Expense.create({
-//             title: title,
-//             amount: amount,
-//             category: category,
-//             description: description,
-//             date: date,
-//             user: userId,
-//         });
-
-//         user.expenses.push(newExpense);
-
-//         user.save();
-
-//         return res.status(200).json({
-//             success: true,
-//             message: "Transaction Added Successfully",
-//         });
-//     } catch (error) {
-//         return res.status(401).json({
-//             success: false,
-//             messages: error.message,
-//         });
-//     }
-// };
-
-// //get expenses
-// export const getExpenses = async (req, res) => {
-//     try {
-//         const { userId, category } = req.query; // Extract category from query parameters
-
-//         const user = await User.findById(userId);
-
-//         console.log(user, category);
-        
-//         // confirm if it is user
-//         if (!user) {
-//             return res.status(400).json({
-//                 success: false,
-//                 message: "User not found",
-//             });
-//         }
-
-//         const expenses = await Expense.find({userId, category});
-
-//         res.status(200).json(expenses); // Send filtered or all expenses
-
-//     } catch (error) {
-//         return res.status(500).json({
-//             success: false, 
-//             message: 'error fetching expenses' 
-//         });
-//     }
-// };
-
-
-// //update an expense
-// export const updateExpense = async (req, res) => {
-//     try {
-//         const expenseId = req.params.id;
-//         const { title, amount, description, date, category } = req.body;
-
-//         console.log(title, amount, description, date, category);
-
-//         const expense = await Expense.findById(expenseId);
-
-//         if (!expense) {
-//             return res.status(400).json({ message: "Expense not found" });
-//         }
-
-//         if (title) {
-//             expense.title = title;
-//         }
-//         if (amount) {
-//             expense.amount = amount;
-//         }
-//         if (description) {
-//             expense.description = description;
-//         }
-//         if (category) {
-//             expense.title = category;
-//         }
-//         if (date) {
-//             expense.date = date;
-//         }
-//         return res.status(200).json({
-//             success: false,
-//             message: `Transaction Updated Successfully`,
-//             expenseConfirm: expense,
-//         });
-//     } catch (error) {
-//         res.status(400).json({ message: error.message });
-//     }
-// };
-
-// //delete expense
-// export const deleteExpense = async (req, res) => {
-//     try {
-//         const expenseId = req.params.id;
-//         const userId = req.body.userId;
-
-//         const user = await User.findById(userId);
-
-//         if (!user) {
-//             return res.status(400).json({
-//                 success: false,
-//                 message: "User not found",
-//             });
-//         }
-
-//         const expense = await Expense.findByIdAndDelete(expenseId);
-
-//         if (!expense) {
-//             return res.status(400).json({
-//                 success: false,
-//                 message: "Expense not found",
-//             });
-//         }
-
-//         const expenseArray = user.expenses.filter(
-//             (expense) => expense._id === expenseId
-//           );
-      
-//           user.expenses = expenseArray;
-      
-//           user.save();
-
-//           return res.status(200).json({
-//             success: true,
-//             message: "Expense deleted",
-//           });
-
-//     } catch (error) {
-//         return res.status(401).json({
-//             success: false,
-//             messages: error.message,
-//           });
-//     }
-// };
-
-
 
