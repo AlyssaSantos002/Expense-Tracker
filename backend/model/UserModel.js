@@ -1,4 +1,5 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -13,10 +14,10 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, "Password is required"],
-        minlength : [6, "Password must be atleast 6 characters"],
+        minlength: [6, "Password must be atleast 6 characters"],
     },
     createdAt: {
-        type:Date,
+        type: Date,
         default: Date.now,
     },
 
