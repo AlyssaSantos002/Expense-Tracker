@@ -1,0 +1,49 @@
+.profile {
+    position: relative;
+    width: 600px;
+    height: 400px;
+    background-color: rgb(13, 13, 13);
+    border: 3px solid rgba(255, 255, 255, .2); 
+    color: white;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px 40px;
+    display: flex;
+}
+
+.profile-heading {
+    position: absolute;
+    top: -55px;
+    left: 30%;
+    transform: translateX(-50%);
+    font-size: 80px;
+    font-weight: bold;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.profile-info {
+    margin-right: auto;
+    margin-left: 0;
+    text-align: left;
+    padding-left: 10px;
+    color: white;
+    padding-top: 100px;
+}
+
+.info {
+    padding: 20px;
+}
+
+.info p {
+    display: flex;
+    width: 200px;
+    color: white;
+    padding-top:30px ;
+    align-items: center;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+

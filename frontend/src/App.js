@@ -1,26 +1,25 @@
 import React from 'react';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Login from './pages/auth/login/login';
-import Register from './pages/auth/Register/register'
-import Profile from './pages/profile/profile';
-import AddExpense from './pages/AddExpense/AddExpense';
+import Login from './Components/Auth/Login/login';
+import Register from './Components/Auth/Register/register';
+import Profile from './Components/Profile/profile';
+
 
 function App() {
+
   return (
     <div className="App">
       <Router>
-        <div className='App'>
-          <Routes>
-            <Route path='/' element={<Login/>}/>
-            <Route path='/register' element={<Register/>}/>
-            <Route path='/profile' element={<Profile/>}/>
-            <Route path='/AddExpense' element={<AddExpense/>}/>
-          </Routes>
-        </div>
+        <Routes>
+          <Route path='/' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/profile' element={<Profile />} />
+        </Routes>
       </Router>
     </div>
   );
-}
+};
+
 
 export default App;
