@@ -43,6 +43,34 @@ export const getExpenses = async (req, res) => {
     res.status(500).json({ success: false, message: "Error fetching expenses", error: error.message });
   }
 };
+export const getExpenseById = async (req, res) => {
+  try {
+    const { expenseId } = req.body; // Use req.params for route-based ID
+
+    // Fetch the expense from the database
+    const expense = await Expense.find({_id:expenseId}); // Replace `_id` with your field if different
+
+    if (!expense) {
+      return res.status(404).json({
+        success: false,
+        message: "No expense found with the given ID",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Expense fetched successfully",
+      expense,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Error fetching expense",
+      error: error.message,
+    });
+  }
+};
+
 
 // Update Expense
 export const updateExpense = async (req, res) => {

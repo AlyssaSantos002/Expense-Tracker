@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-const AddExpense = () => {
+
+const AddExpense = ({onAddExpense}) => {
     const [title, setTitle] = useState('');
     const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');
@@ -27,6 +28,7 @@ const AddExpense = () => {
                 setDescription('');
                 setDate('');
                 setCategory('');
+                onAddExpense(result.expense);
             } else {
                 alert(result.message || 'Failed to add expense.');
             }
@@ -36,20 +38,20 @@ const AddExpense = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='add-expense-form'>
             <h1>Add Expense</h1><br></br>
             <input type="text" placeholder="Title" value={title}
                 onChange={(e) => setTitle(e.target.value)} required
-            /><br/><br/>
+            /><br/>
             <input type="number" placeholder="Amount" value={amount}
                 onChange={(e) => setAmount(e.target.value)} required
-            /><br/><br/>
+            /><br/>
             <input type="text" placeholder="Description" value={description}
                 onChange={(e) => setDescription(e.target.value)}
-            /><br/><br/>
-            <input type="date" placeholder="Date" value={date}
+            /><br/>
+            <label>Date: <input type="date" placeholder="Date" value={date}
                 onChange={(e) => setDate(e.target.value)} required
-            /><br/><br/>
+            /></label><br/>
             <label>Category: <select onChange={(e) => setCategory(e.target.value)} required>
                         <option value='Entertainment'>Entertainment</option>
                         <option value='Household'>Household</option>
@@ -57,7 +59,7 @@ const AddExpense = () => {
                         <option value='Transportation'>Transportation</option>
                         <option value='Utilities'>Utilities</option>
                         <option value='Other'>Other</option>
-                    </select></label><br/><br/>
+                    </select></label><br/>
             <button type="submit">Add Expense</button>
         </form>
     );

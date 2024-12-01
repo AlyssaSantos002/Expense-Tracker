@@ -22,12 +22,26 @@ export const createOrUpdateBudget = async (req, res) => {
   }
 };
 
+// Get Initial Budget
+export const getBudget = async (req, res) => {
+  try{
+    const { userID } = req.body;
+
+    const budget = await Budget.findOne(userID);
+    if (!budget) return res.status(404).json({ success: false, message: "No budget found" });
+
+    res.status(200).json({ success: true, message: "Budget found: $", budget });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Error finding budget.", error: error.message });
+  }
+};
+
 // Get Remaining Budget
 export const getRemainingBudget = async (req, res) => {
   try {
     const { userId } = req.params;
 
-    const budget = await Budget.findOne({ user: userId });
+    const budget = await Budget.findOne(userId);
     if (!budget) return res.status(404).json({ success: false, message: "No budget found" });
 
     const totalExpenses = await Expense.aggregate([
