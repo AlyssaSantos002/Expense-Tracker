@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './profile.css';
 import axios from "axios";
-import { Link } from 'react-router-dom';
-//import auth from '../../images/profile.jpg';
+import avatar from '../../images/profile.jpg'
+import Navbar from '../Navbar/navbar';
 
 const Profile = () => {
-
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
 
@@ -15,7 +14,6 @@ const Profile = () => {
         if (storedEmail) {
             setEmail(storedEmail);
 
-            // If localStorage data is missing, fetch data from the server
             axios.post('/auth/profile', { email: storedEmail })
                 .then(response => {
                     setName(response.data.user.name);
@@ -24,10 +22,12 @@ const Profile = () => {
                     console.error('Error fetching user details:', error);
                 });
         }
-    
+
     }, []);
 
     return (
+        <>
+        <Navbar/>
         <div className='profile'>
             <h1 className='profile-heading'>Profile</h1>
             <div className='profile-info'>
@@ -41,11 +41,18 @@ const Profile = () => {
                 </div>
             </div>
 
+
             {/* temporary */}
-            <div className="nav-links">
-                <Link to="/home">Go to Home</Link>
-            </div>
-        </div>
+             {/* <div className="nav-links">
+                <Link to="/home">Go to Home</Link> */}
+
+                <div className='profile-avatar'>
+                    <img src={avatar}></img>
+
+                </div>
+            </div> 
+        
+        </>
     );
 };
 

@@ -6,9 +6,8 @@
     border: 3px solid rgba(255, 255, 255, .2); 
     color: white;
     border-radius: 10px;
-    margin-left: auto;
-    margin-right: auto;
     padding: 30px 40px;
+    margin: auto;
     display: flex;
 }
 
@@ -46,4 +45,12 @@
     font-family: 'Times New Roman', Times, serif;
 }
 
+
+.profile-avatar img {
+    height: 180px;
+    width:180px;
+    border-radius: 50%;
+    margin-top: 40px;
+    margin-right: 20px;
+}
 

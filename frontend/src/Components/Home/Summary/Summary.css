@@ -1,0 +1,13 @@
+.summary-info ul {
+    list-style-type: none;
+    padding: 20px;
+}
+
+.summary-info li {
+    padding: 10px;
+    display: flex;
+}
+
+.summary-info .amount {
+    margin-left: auto;
+}

@@ -29,7 +29,7 @@ const Login = () => {
                 localStorage.setItem('userEmail', result.user.email);
                 localStorage.setItem('userName', result.user.name);
                 console.log(result);
-                window.location.href = '/profile';
+                window.location.href = '/home';
             } else {
                 alert(result.message);
             }
