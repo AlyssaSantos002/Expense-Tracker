@@ -31,6 +31,7 @@ const ExpensesList = ({ expenses, setExpenses, setSelectedExpense, selectedExpen
   }, [category, setCategory]);
 
   const handleRadioChange = (expenseId) => {
+    console.log("Selected Expense ID:", expenseId); 
     setSelectedExpense(expenseId);
   };
 
@@ -51,11 +52,12 @@ const ExpensesList = ({ expenses, setExpenses, setSelectedExpense, selectedExpen
           onChange={(e) => setCategory(e.target.value)}
         >
           <option value="">-- All Categories --</option>
-          <option value="Entertainment">Entertainment</option>
-          <option value="Household">Household</option>
-          <option value="Personal Care">Personal Care</option>
+          <option value="Housing">Housing</option>
+          <option value="Food">Food</option>
+          <option value="Health">Health</option>
           <option value="Transportation">Transportation</option>
-          <option value="Utilities">Utilities</option>
+          <option value="Entertainment">Entertainment</option>
+          <option value="Clothing">Clothing</option>
           <option value="Other">Other</option>
         </select>
       </label>

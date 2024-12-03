@@ -43,12 +43,13 @@ export const getExpenses = async (req, res) => {
     res.status(500).json({ success: false, message: "Error fetching expenses", error: error.message });
   }
 };
+
 export const getExpenseById = async (req, res) => {
   try {
-    const { expenseId } = req.body; // Use req.params for route-based ID
+    const { expenseId } = req.params; // Use req.params for route-based ID
 
     // Fetch the expense from the database
-    const expense = await Expense.find({_id:expenseId}); // Replace `_id` with your field if different
+    const expense = await Expense.findOne({expenseId}).exec(); // Replace `_id` with your field if different
 
     if (!expense) {
       return res.status(404).json({

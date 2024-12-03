@@ -18,9 +18,10 @@ const UpdateExpense = ({ selectedExpense, onUpdateExpense }) => {
                 if (response.ok) {
                     const data = await response.json();
                     console.log('Fetched expense data:', data);
+                    console.log(data.expenses);
     
                     // Update form fields
-                    setTitle(data.expense.title);
+                    setTitle(data.title);
                     
                     setAmount(data.amount || '');
                     setCategory(data.category || '');
