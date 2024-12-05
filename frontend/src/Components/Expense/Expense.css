@@ -9,13 +9,10 @@
       margin-right: auto;
       padding-top: 30px;
       position: relative;
-      margin-top: 200px;
+      margin-top: 100px;
   }
 
-  .expense-info{
-    position: fixed;
-    top: 120px;
-  }
+
 
   .expense-form {
       color: black;
