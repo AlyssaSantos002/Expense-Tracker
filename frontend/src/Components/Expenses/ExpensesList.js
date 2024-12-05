@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import moment from "moment";
 
 const ExpensesList = ({ expenses, setExpenses, setSelectedExpense, selectedExpense }) => {
   const [category, setCategory] = useState("");
+  const [formattedDate, setDateFormat] = useState("");
 
   useEffect(() => {
     const handleGetExpenses = async () => {
@@ -36,9 +38,7 @@ const ExpensesList = ({ expenses, setExpenses, setSelectedExpense, selectedExpen
   };
 
   const formatDate = (dateString) => {
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    const date = new Date(dateString);
-    return new Intl.DateTimeFormat("en-US", options).format(date);
+    moment(dateString).format("MMMM Do YYYY");
   };
 
   return (
@@ -86,7 +86,7 @@ const ExpensesList = ({ expenses, setExpenses, setSelectedExpense, selectedExpen
               </td>
               <td>{expense.title}</td>
               <td>${expense.amount}</td>
-              <td>{formatDate(expense.date)}</td>
+              <td>{moment(expense.date).format("MMMM Do YYYY")}</td>
               <td className="desc">{expense.description}</td>
               <td>{expense.category}</td>
             </tr>

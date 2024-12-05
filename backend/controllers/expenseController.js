@@ -34,8 +34,8 @@ export const getExpenses = async (req, res) => {
 
     const expenses = await Expense.find(query);
 
-     // Check if any expenses were found
-     if (expenses.length === 0) {
+    // Check if any expenses were found
+    if (expenses.length === 0) {
       return res.status(200).json({ success: true, message: "No expenses found", expenses });
     }
     res.status(200).json({ success: true, expenses });
@@ -49,7 +49,7 @@ export const getExpenseById = async (req, res) => {
     const { expenseId } = req.params; // Use req.params for route-based ID
 
     // Fetch the expense from the database
-    const expense = await Expense.findOne({expenseId}).exec(); // Replace `_id` with your field if different
+    const expense = await Expense.findOne({ expenseId }).exec(); // Replace `_id` with your field if different
 
     if (!expense) {
       return res.status(404).json({
@@ -76,8 +76,17 @@ export const getExpenseById = async (req, res) => {
 // Update Expense
 export const updateExpense = async (req, res) => {
   try {
-    const { id } = req.params;
-    const updatedData = req.body;
+    const { id } = req.params; // Extract expense ID from URL params
+    const { title, amount, description, date, category, userId } = req.body; // Extract fields from request body
+
+    const updatedData = {};
+    // For partial updates
+    if (title) updatedData.title = title;
+    if (amount) updatedData.amount = amount;
+    if (description) updatedData.description = description;
+    if (date) updatedData.date = date;
+    if (category) updatedData.category = category;
+    if (userId) updatedData.user = userId;
 
     const expense = await Expense.findByIdAndUpdate(id, updatedData, { new: true });
     if (!expense) return res.status(404).json({ success: false, message: "Expense not found" });

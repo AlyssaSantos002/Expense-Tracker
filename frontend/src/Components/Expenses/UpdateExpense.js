@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 
 const UpdateExpense = ({ selectedExpense, onUpdateExpense }) => {
     const [title, setTitle] = useState('');
@@ -6,46 +7,43 @@ const UpdateExpense = ({ selectedExpense, onUpdateExpense }) => {
     const [category, setCategory] = useState('');
     const [date, setDate] = useState('');
     const [description, setDescription] = useState('');
+    const [formattedDate, setDateFormat] = useState('');
+    //Stores the previously selected catgory and act as a placeholder
+    const [prevCategory, setPrevCategory] = useState('');
 
     // Fetch expense details when component mounts or expenseId changes
     useEffect(() => {
-        console.log("Expense id: ",selectedExpense);
+        console.log("Expense id: ", selectedExpense);
         const fetchExpense = async () => {
             try {
                 console.log(`Fetching expense with ID: ${selectedExpense}`);
                 const response = await fetch(`/expenses/${selectedExpense}`, { method: "GET" });
-                
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log('Fetched expense data:', data);
-                    console.log(data.expenses);
-    
-                    // Update form fields
-                    setTitle(data.title);
-                    
-                    setAmount(data.amount || '');
-                    setCategory(data.category || '');
-                    setDate(data.date || '');
-                    setDescription(data.description || '');
-                } else {
-                    const error = await response.json();
-                    console.error('Failed to fetch expense details:', error);
-                }
+                const data = await response.json();
+                console.log('Fetched expense data:', data);
+                // Update form fields
+                setTitle(data.expense.title);
+                setAmount(data.expense.amount);
+                setCategory(data.expense.category);
+                setDate(data.expense.date);
+                setDateFormat(moment(data.expense.date).format("yyyy-MM-DD"));
+                setDescription(data.expense.description);
+                setPrevCategory(data.expense.category);
+
             } catch (error) {
                 console.error('Error fetching expense:', error);
             }
         };
-    
-        if (selectedExpense){
+
+        if (selectedExpense) {
             fetchExpense();
         }
     }, [selectedExpense]);
-    
+
 
     const handleUpdate = async (e) => {
         e.preventDefault();
         const userId = localStorage.getItem('userId');
-        const updatedExpense = { title, amount, category, date, description, userId };
+        const updatedExpense = { title, amount, category, date, description, userId};
 
         try {
             const response = await fetch(`/expenses/${selectedExpense}`, {
@@ -67,43 +65,54 @@ const UpdateExpense = ({ selectedExpense, onUpdateExpense }) => {
         }
     };
 
+
+
     return (
         <form onSubmit={handleUpdate}>
             <h1>Update Expense</h1>
             <br />
-            <p>{title}</p>
             <input
                 type="text"
-                placeholder="Title"
+                placeholder={title}
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-           
+
             />
             <br />
             <br />
             <input
                 type="number"
-                placeholder="Amount"
+                placeholder={amount}
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-             
+
             />
             <br />
             <br />
-            <input
+            {/* <input
                 type="text"
-                placeholder="Category"
+                placeholder={category}
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
          
-            />
+            /> */}
+            <label>Category: <select onChange={(e) => setCategory(e.target.value)} defaultValue={prevCategory}>
+                <option selected="selected">{prevCategory}</option>
+                <option value="Housing">Housing</option>
+                <option value="Food">Food</option>
+                <option value="Health">Health</option>
+                <option value="Transportation">Transportation</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Other">Other</option>
+            </select></label>
             <br />
             <br />
+            <p>{formattedDate}</p><br/>
             <input
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-        
             />
             <br />
             <br />
@@ -111,7 +120,7 @@ const UpdateExpense = ({ selectedExpense, onUpdateExpense }) => {
                 placeholder="Description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-          
+
             />
             <br />
             <br />
