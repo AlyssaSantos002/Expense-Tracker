@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import NavBarComponent from "../Navbar/Navbar";
 import './profile.css';
 import axios from "axios";
-import avatar from '../../images/profile.jpg'
-import Navbar from '../Navbar/navbar';
 
 const Profile = () => {
     const [email, setEmail] = useState('');
@@ -27,7 +26,7 @@ const Profile = () => {
 
     return (
         <>
-        <Navbar/>
+        <NavBarComponent/>
         <div className='profile'>
             <h1 className='profile-heading'>Profile</h1>
             <div className='profile-info'>
@@ -40,16 +39,6 @@ const Profile = () => {
                     <p>{email}</p>
                 </div>
             </div>
-
-
-            {/* temporary */}
-             {/* <div className="nav-links">
-                <Link to="/home">Go to Home</Link> */}
-
-                <div className='profile-avatar'>
-                    <img src={avatar}></img>
-
-                </div>
             </div> 
         
         </>

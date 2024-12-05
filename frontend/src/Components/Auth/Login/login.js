@@ -25,9 +25,10 @@ const Login = () => {
 
             const result = await response.json();
             if (response.ok) {
-                localStorage.setItem('userId', result.user._id); // Save userId
+                localStorage.setItem('userId', result.user._id); 
                 localStorage.setItem('userEmail', result.user.email);
                 localStorage.setItem('userName', result.user.name);
+                
                 console.log(result);
                 window.location.href = '/home';
             } else {
@@ -40,7 +41,7 @@ const Login = () => {
 
 
     return (
-        <div className='container'>
+        <div className='login-container'>
             <>
                 <div className='login'>
                     <form onSubmit={handleSubmit}>

@@ -37,7 +37,7 @@ const Register = () => {
     };
 
     return (
-        <div className='container'>
+        <div className='login-container'>
             <>
 
                 <div className='register'>

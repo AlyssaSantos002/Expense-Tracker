@@ -43,6 +43,7 @@ const ExpensesList = ({ expenses, setExpenses, setSelectedExpense, selectedExpen
 
   return (
     <div>
+      <div className="expense-info">
       <h1>Expenses</h1><br/>
       <label>
         <b>CATEGORY:</b>
@@ -61,7 +62,7 @@ const ExpensesList = ({ expenses, setExpenses, setSelectedExpense, selectedExpen
           <option value="Other">Other</option>
         </select>
       </label>
-
+      </div>
       <table className="expenses-list">
         <thead>
           <tr>

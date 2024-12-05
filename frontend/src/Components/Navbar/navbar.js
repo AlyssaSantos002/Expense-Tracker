@@ -1,52 +1,56 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import './Navbar.css';
+import axios from "axios";
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import './navbar.css'
-import logo from '../../images/logo.jpg'
-const Navbar = () => {
+import { useNavigate } from 'react-router-dom';
+import avatar from '../../images/avarat.png'
+
+const NavBarComponent = () => {
+    const navigate = useNavigate();
+    const [name, setName] = useState('');
+
+    useEffect(() => {
+        const storedEmail = localStorage.getItem('userEmail');
+
+        if (storedEmail) {
+            axios.post('/auth/profile', { email: storedEmail })
+                .then(response => {
+                    setName(response.data.user.name);
+                })
+                .catch((error) => {
+                    console.error('Error fetching user details:', error);
+                });
+        }
+
+    }, []);
+
+    const signOuthandler = async () => {
+        try {
+            const response = await axios.get('/auth/signout');
+            localStorage.clear()
+            navigate("/");
+        } catch (error) {
+            console.error("Error Logging out", error)
+        }
+    };
+
     return (
-        <div className='navbar'>
-            <div className='logo'>
-               {/* <img src= {logo} ></img> */}
+        <nav className="navbar">
+            <div className="navbar-brand">
+                <a href="/profile" className="brand-link">
+                    <i class="bi bi-person-circle"></i>
+                    <h2>Hello, {name}</h2>
+                </a>
             </div>
-            <ul>
-                <li>
-                    <div className='nav-item'>
-                        <div className='nav-icon'>
-                            <i class="bi bi-house-heart"></i>
-                        </div>
-                        <Link to="/home" className="nav-link">
-                            Home
-                        </Link>
-                    </div>
-                </li>
-                <li>
-                    <div className='nav-item'>
-                        <div className='nav-icon'>
-                            <i class="bi bi-piggy-bank"></i>
-                        </div>
-                        <Link to="/expense" className="nav-link">
-                            Expense
-                        </Link>
-                    </div>
-                </li>
-                <li>
-                    <div className='nav-item'>
-                        <div className='nav-icon'>
-                            <i class="bi bi-person-circle"></i>
-                        </div>
-                        <Link to="/profile" className="nav-link">
-                            Profile
-                        </Link>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    )
-}
 
-export default Navbar;
+            <div className="navbar-links">
+                <a href="/home" className="nav-link">Home</a>
+                <a href="/expense" className="nav-link">Expense</a>
+                <a href="/budget" className="nav-link">Budget</a>
+                <a onClick={signOuthandler} className="nav-link">Logout</a>
+            </div>
+        </nav>
+    );
+};
 
-
-
-
+export default NavBarComponent;

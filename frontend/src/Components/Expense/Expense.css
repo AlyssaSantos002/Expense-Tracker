@@ -4,11 +4,15 @@
       width: 80%;
       height: 100%;
       border-radius: 10px;
-      padding:80px;
-      margin-left: auto;
+      padding: 80px;
+      margin-left: 200px;
       margin-right: auto;
-
+      padding-top: 30px;
+      position: relative;
+      margin-top: 100px;
   }
+
+
 
   .expense-form {
       color: black;
@@ -19,8 +23,8 @@
   }
 
   .expenses-list {
-      min-width: 700px;
-      margin-top: 15px;
+      min-width: 900px;
+      margin-top: 25px;
       margin-bottom: 20px;
   }
 
@@ -28,8 +32,9 @@
   th,
   td {
       border-collapse: collapse;
-      padding: 10px 10px 10px 10px;
+      padding: 15px 10px 10px 10px;
       border: 1px solid white;
+      margin-top: 30px;
   }
 
   .expenses-list,
@@ -93,6 +98,7 @@
       color: #fff;
       border-radius: 5px;
       border-color: rgb(68, 135, 230);
+      margin-top: 30px;
   }
 
   .dlt-btn:hover,

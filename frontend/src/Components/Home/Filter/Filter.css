@@ -1,0 +1,51 @@
+.filter-option {
+    display: flex;
+    border-bottom: 3px solid rgba(255, 255, 255, .2);
+}
+
+.filter-option select {
+    height: 40px;
+    margin: 20px 0px;
+    padding-right: 20px;
+}
+
+.filter-option h2 {
+    font-size: larger;
+    margin: 0;
+    padding: 25px 25px 0px;
+}
+.filter-info p{
+    margin-left: 60px ;
+}
+
+.filter-info {
+    padding-top: 30px;
+}
+
+.filter-info ul {
+    list-style-type: none;
+}
+
+.filter-info li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+}
+
+.filter-category {
+    flex: 1;
+    text-align: left;
+    padding-left: 0;
+}
+
+.filter-date {
+    flex: 1;
+    text-align: right;
+}
+
+.filter-amount {
+    flex: 1;
+    text-align: center;
+}

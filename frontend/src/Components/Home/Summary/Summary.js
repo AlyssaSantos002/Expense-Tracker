@@ -36,7 +36,7 @@ const Summary = () => {
                         return (
                             <li key={index}>
                                 <div className="category">
-                                    <strong>{category}: </strong>
+                                    {category}: 
                                 </div>
                                 <div className="amount">
                                     ${total.toFixed(2)}

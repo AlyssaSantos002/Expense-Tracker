@@ -4,9 +4,9 @@ import './App.css';
 import Login from './Components/Auth/Login/login';
 import Register from './Components/Auth/Register/register';
 import Profile from './Components/Profile/profile';
-import NavBar from './Components/Navbar/navbar';
 import Expense from './Components/Expense/Expense';
 import Home from './Components/Home/Home';
+import NavBarComponent from './Components/Navbar/Navbar';
 
 function App() {
 
@@ -19,7 +19,7 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path='/expense' element={<Expense />} />
           <Route path='/profile' element={<Profile />} />
-          <Route path='/navbar' element={<NavBar />} />
+          <Route path='/navbar' element={<NavBarComponent />} />
         </Routes>
       </Router>
     </div>
