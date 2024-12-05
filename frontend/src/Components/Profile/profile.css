@@ -1,14 +1,15 @@
 .profile {
-    position: relative;
+    position: relative; 
     width: 600px;
-    height: 400px;
+    height: 450px;
     background-color: rgb(13, 13, 13);
     border: 3px solid rgba(255, 255, 255, .2); 
     color: white;
     border-radius: 10px;
-    padding: 30px 40px;
+    padding: 20px 10px;
     margin: auto;
-    display: flex;
+    margin-top: 170px; 
+    margin-bottom: 100px;
 }
 
 .profile-heading {
@@ -28,29 +29,21 @@
     text-align: left;
     padding-left: 10px;
     color: white;
-    padding-top: 100px;
+    padding-top: 60px;
 }
 
 .info {
-    padding: 20px;
+   padding-left: 40px;
+   padding-top: 50px;
 }
 
 .info p {
     display: flex;
     width: 200px;
     color: white;
-    padding-top:30px ;
+    padding-top:20px ;
     align-items: center;
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
-}
-
-
-.profile-avatar img {
-    height: 180px;
-    width:180px;
-    border-radius: 50%;
-    margin-top: 40px;
-    margin-right: 20px;
 }
 

@@ -1,14 +1,14 @@
 import React from "react";
-import Navbar from "../Navbar/navbar";
+import NavBarComponent from "../Navbar/Navbar";
 import Summary from "./Summary/Summary";
 import Filter from "./Filter/Filter";
-import Graph from "./Graph";
+import Graph from "./Graph/Graph";
 import './Home.css'
 
 const Home = () => {
     return (
         <>
-            <Navbar />
+        <NavBarComponent/>
             <div className="home">
                 <div className="home-container">
                     <div className="Summary">

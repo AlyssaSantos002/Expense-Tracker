@@ -1,5 +1,4 @@
 import express from 'express';
-
 import connectDB from './db/connect.js';
 import expensesRouter from './routers/expensesRouter.js';
 import userRouter from './routers/userRouter.js';

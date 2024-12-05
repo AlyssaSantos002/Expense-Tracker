@@ -5,7 +5,7 @@ import ExpensesList from '../Expenses/ExpensesList';
 import DeleteExpense from '../Expenses/DeleteExpense';
 import UpdateExpense from '../Expenses/UpdateExpense';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import Navbar from '../Navbar/navbar';
+import NavBarComponent from '../Navbar/Navbar';
 
 const Expense = () => {
   const [expenses, setExpenses] = useState([]);
@@ -33,7 +33,7 @@ const Expense = () => {
 
   return (
     <>
-      <Navbar />
+    <NavBarComponent/>
       <div className="expense">
         <ExpensesList
           expenses={expenses}

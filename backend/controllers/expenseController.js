@@ -27,15 +27,42 @@ export const createExpense = async (req, res) => {
 // Get Expenses (Filtered by Category)
 export const getExpenses = async (req, res) => {
   try {
-    const { userId, category } = req.query;
+    const { userId, category, filterChoice} = req.query;
 
     const query = { user: userId };
+    const now = new Date();
+
     if (category) query.category = category;
 
+    //Filteration by last week
+    if (filterChoice == "Last Week") {
+      const startOfLastWeek = new Date(now);
+      startOfLastWeek.setDate(now.getDate() - now.getDay() - 7);
+      const endOfLastWeek = new Date(startOfLastWeek);
+      endOfLastWeek.setDate(startOfLastWeek.getDate() + 6);
+
+      query.date = {
+        $gte: startOfLastWeek,
+        $lt: endOfLastWeek,
+      };
+    }
+
+    //Filteration by last month
+    else if (filterChoice === "Last Month") {
+      const now = new Date();
+      const startOfLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1); 
+      const endOfLastMonth = new Date(now.getFullYear(), now.getMonth(), 0); 
+    
+      query.date = {
+        $gte: startOfLastMonth,
+        $lte: endOfLastMonth,
+      };
+    }
+    
     const expenses = await Expense.find(query);
 
-     // Check if any expenses were found
-     if (expenses.length === 0) {
+    // Check if any expenses were found
+    if (expenses.length === 0) {
       return res.status(200).json({ success: true, message: "No expenses found", expenses });
     }
     res.status(200).json({ success: true, expenses });
@@ -49,7 +76,7 @@ export const getExpenseById = async (req, res) => {
     const { expenseId } = req.params; // Use req.params for route-based ID
 
     // Fetch the expense from the database
-    const expense = await Expense.findOne({expenseId}).exec(); // Replace `_id` with your field if different
+    const expense = await Expense.findOne({ expenseId }).exec(); // Replace `_id` with your field if different
 
     if (!expense) {
       return res.status(404).json({
