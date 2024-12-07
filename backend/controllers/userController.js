@@ -112,15 +112,11 @@ export const profileUser = async (req, res) => {
 };
 
 
-export const signoutUser = (req, res, next) => {
+export const signoutUser = (req, res) => {
     try {
-        req.logout((err) => {
-            if (err) {
-                return next(err);
-            }
-            res.redirect("/");
-        });
-    } catch (error) {
-        next(error);
+        res.status(200).json({ message: 'Logged out successfully' });
+    } catch (err) {
+        console.error('Error during logout:', err);
+        res.status(500).json({ message: 'An error occurred during logout', error: err });
     }
 };

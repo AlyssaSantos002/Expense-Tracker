@@ -2,11 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import axios from "axios";
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { useNavigate } from 'react-router-dom';
-import avatar from '../../images/avarat.png'
 
 const NavBarComponent = () => {
-    const navigate = useNavigate();
     const [name, setName] = useState('');
 
     useEffect(() => {
@@ -21,16 +18,26 @@ const NavBarComponent = () => {
                     console.error('Error fetching user details:', error);
                 });
         }
-
     }, []);
 
-    const signOuthandler = async () => {
+    const handleLogout = async () => {
         try {
-            const response = await axios.get('/auth/signout');
-            localStorage.clear()
-            navigate("/");
+
+            const response = await fetch('/auth/signout', {
+                method: 'GET',
+                credentials: 'include',
+            });
+
+            if (response.ok) {
+                localStorage.removeItem('userId'); 
+                localStorage.removeItem('userEmail'); 
+                localStorage.removeItem('userName'); 
+                window.location.href = '/';
+            } else {
+                console.error('Logout failed');
+            }
         } catch (error) {
-            console.error("Error Logging out", error)
+            console.error('Error during logout:', error);
         }
     };
 
@@ -47,7 +54,7 @@ const NavBarComponent = () => {
                 <a href="/home" className="nav-link">Home</a>
                 <a href="/expense" className="nav-link">Expense</a>
                 <a href="/budget" className="nav-link">Budget</a>
-                <a onClick={signOuthandler} className="nav-link">Logout</a>
+                <a onClick={handleLogout} className="nav-link">Logout</a>
             </div>
         </nav>
     );
