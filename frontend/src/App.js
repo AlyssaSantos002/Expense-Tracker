@@ -5,8 +5,9 @@ import Login from './Components/Auth/Login/login';
 import Register from './Components/Auth/Register/register';
 import Profile from './Components/Profile/profile';
 import Expense from './Components/Expense/Expense';
+import Budget from './Components/Budget/Budget';
 import Home from './Components/Home/Home';
-import NavBarComponent from './Components/Navbar/Navbar';
+import NavBarComponent from './Components/Navbar/navbar';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/home' element={<Home />} />
           <Route path='/expense' element={<Expense />} />
+          <Route path='/budget' element={<Budget />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/navbar' element={<NavBarComponent />} />
         </Routes>

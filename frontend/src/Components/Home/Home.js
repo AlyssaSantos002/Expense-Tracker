@@ -1,8 +1,8 @@
 import React from "react";
-import NavBarComponent from "../Navbar/Navbar";
+import NavBarComponent from "../Navbar/navbar";
 import Summary from "./Summary/Summary";
 import Filter from "./Filter/Filter";
-import Graph from "./Graph/Graph";
+
 import './Home.css'
 
 const Home = () => {
@@ -18,9 +18,7 @@ const Home = () => {
                         <Filter />
                     </div>
                 </div>
-                <div className="graph-section">
-                    <Graph />
-                </div>
+                
             </div>
         </>
     )

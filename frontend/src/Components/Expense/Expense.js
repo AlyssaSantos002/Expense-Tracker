@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import './Expense.css'
-import AddExpense from '../Expenses/AddExpense';
-import ExpensesList from '../Expenses/ExpensesList';
-import DeleteExpense from '../Expenses/DeleteExpense';
-import UpdateExpense from '../Expenses/UpdateExpense';
+import AddExpense from './Crud-Expense/AddExpense';
+import ExpensesList from './Crud-Expense/ExpensesList';
+import DeleteExpense from './Crud-Expense/DeleteExpense';
+import UpdateExpense from './Crud-Expense/UpdateExpense';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import NavBarComponent from '../Navbar/Navbar';
+import NavBarComponent from '../Navbar/navbar';
 
 const Expense = () => {
   const [expenses, setExpenses] = useState([]);
