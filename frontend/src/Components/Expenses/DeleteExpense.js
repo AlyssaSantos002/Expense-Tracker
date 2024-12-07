@@ -10,7 +10,7 @@ const DeleteExpense = ({ selectedExpense, setExpenses }) => {
 
       console.log("Deleting expense ID:", selectedExpense);
 
-      const response = await fetch(`/expenses/${selectedExpense}`, {
+      const response = await fetch(`/expense/${selectedExpense}`, {
         method: "DELETE",
       });
 

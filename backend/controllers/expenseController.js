@@ -71,12 +71,16 @@ export const getExpenses = async (req, res) => {
   }
 };
 
+
 export const getExpenseById = async (req, res) => {
   try {
-    const { expenseId } = req.params; // Use req.params for route-based ID
+    const {id} = req.params;
+    const query = {
+      _id: id
+    }
 
     // Fetch the expense from the database
-    const expense = await Expense.findOne({ expenseId }).exec(); // Replace `_id` with your field if different
+    const expense = await Expense.findOne(query); // Replace `_id` with your field if different
 
     if (!expense) {
       return res.status(404).json({

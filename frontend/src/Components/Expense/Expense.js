@@ -23,7 +23,7 @@ const Expense = () => {
     } else {
       setExpenses((prevExpenses) =>
         prevExpenses.map((expense) =>
-          expense.id === updatedExpense.id ? updatedExpense : expense
+          expense._id === updatedExpense._id ? updatedExpense : expense
         )
       );
     }

@@ -8,8 +8,8 @@ import {createExpense, getExpenses, getExpenseById, updateExpense, deleteExpense
 // Expense Routes
 router.post("/expenses", createExpense);
 router.get("/expenses", getExpenses);
-router.get("/expenses/:id", getExpenseById);
-router.put("/expenses/:id", updateExpense);
-router.delete("/expenses/:id", deleteExpense);
+router.get("/expense/:id", getExpenseById);
+router.put("/expense/:id", updateExpense);
+router.delete("/expense/:id", deleteExpense);
 
 export default router;

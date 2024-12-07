@@ -3,7 +3,6 @@ import './Navbar.css';
 import axios from "axios";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useNavigate } from 'react-router-dom';
-import avatar from '../../images/avarat.png'
 
 const NavBarComponent = () => {
     const navigate = useNavigate();

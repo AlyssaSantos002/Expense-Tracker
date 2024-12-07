@@ -3,8 +3,7 @@ import moment from "moment";
 
 const ExpensesList = ({ expenses, setExpenses, setSelectedExpense, selectedExpense }) => {
   const [category, setCategory] = useState("");
-  const [formattedDate, setDateFormat] = useState("");
-
+  
   useEffect(() => {
     const handleGetExpenses = async () => {
       try {
@@ -35,10 +34,6 @@ const ExpensesList = ({ expenses, setExpenses, setSelectedExpense, selectedExpen
   const handleRadioChange = (expenseId) => {
     console.log("Selected Expense ID:", expenseId); 
     setSelectedExpense(expenseId);
-  };
-
-  const formatDate = (dateString) => {
-    moment(dateString).format("MMMM Do YYYY");
   };
 
   return (

@@ -8,16 +8,15 @@ const UpdateExpense = ({ selectedExpense, onUpdateExpense }) => {
     const [date, setDate] = useState('');
     const [description, setDescription] = useState('');
     const [formattedDate, setDateFormat] = useState('');
-    //Stores the previously selected catgory and act as a placeholder
-    const [prevCategory, setPrevCategory] = useState('');
 
     // Fetch expense details when component mounts or expenseId changes
     useEffect(() => {
         console.log("Expense id: ", selectedExpense);
         const fetchExpense = async () => {
             try {
+                const userId = localStorage.getItem("userId");
                 console.log(`Fetching expense with ID: ${selectedExpense}`);
-                const response = await fetch(`/expenses/${selectedExpense}`, { method: "GET" });
+                const response = await fetch(`/expense/${selectedExpense}`, { method: "GET" });
                 const data = await response.json();
                 console.log('Fetched expense data:', data);
                 // Update form fields
@@ -27,7 +26,6 @@ const UpdateExpense = ({ selectedExpense, onUpdateExpense }) => {
                 setDate(data.expense.date);
                 setDateFormat(moment(data.expense.date).format("yyyy-MM-DD"));
                 setDescription(data.expense.description);
-                setPrevCategory(data.expense.category);
 
             } catch (error) {
                 console.error('Error fetching expense:', error);
@@ -46,7 +44,7 @@ const UpdateExpense = ({ selectedExpense, onUpdateExpense }) => {
         const updatedExpense = { title, amount, category, date, description, userId};
 
         try {
-            const response = await fetch(`/expenses/${selectedExpense}`, {
+            const response = await fetch(`/expense/${selectedExpense}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(updatedExpense),
@@ -55,7 +53,7 @@ const UpdateExpense = ({ selectedExpense, onUpdateExpense }) => {
             if (response.ok) {
                 const result = await response.json();
                 alert('Expense updated successfully!');
-                onUpdateExpense(result); // Pass updated expense back to parent
+                onUpdateExpense(result.expense); // Pass updated expense back to parent
             } else {
                 const error = await response.json();
                 alert(error.message || 'Failed to update expense.');
@@ -70,6 +68,8 @@ const UpdateExpense = ({ selectedExpense, onUpdateExpense }) => {
     return (
         <form onSubmit={handleUpdate}>
             <h1>Update Expense</h1>
+            {/* debug */}
+            {console.log(`Selected expense: ${selectedExpense}`)}
             <br />
             <input
                 type="text"
@@ -96,8 +96,8 @@ const UpdateExpense = ({ selectedExpense, onUpdateExpense }) => {
                 onChange={(e) => setCategory(e.target.value)}
          
             /> */}
-            <label>Category: <select onChange={(e) => setCategory(e.target.value)} defaultValue={prevCategory}>
-                <option selected="selected">{prevCategory}</option>
+            <label>Category: 
+                <select value={category} onChange={(e) => setCategory(e.target.value)}>
                 <option value="Housing">Housing</option>
                 <option value="Food">Food</option>
                 <option value="Health">Health</option>
