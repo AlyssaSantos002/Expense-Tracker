@@ -9,7 +9,6 @@ const Home = () => {
     return (
         <>
         <NavBarComponent/>
-            <div className="home">
                 <div className="home-container">
                     <div className="Summary">
                         <Summary />
@@ -18,8 +17,7 @@ const Home = () => {
                         <Filter />
                     </div>
                 </div>
-                
-            </div>
+
         </>
     )
 }

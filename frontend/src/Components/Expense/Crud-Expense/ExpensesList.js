@@ -3,7 +3,7 @@ import moment from "moment";
 
 const ExpensesList = ({ expenses, setExpenses, setSelectedExpense, selectedExpense }) => {
   const [category, setCategory] = useState("");
-
+  
   useEffect(() => {
     const handleGetExpenses = async () => {
       try {

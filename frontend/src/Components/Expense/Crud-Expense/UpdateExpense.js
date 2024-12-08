@@ -13,10 +13,10 @@ const UpdateExpense = ({ selectedExpense, onUpdateExpense }) => {
     useEffect(() => {
         const fetchExpense = async () => {
             try {
-                const response = await fetch(`/expense/${selectedExpense}`, { method: "GET" });
+                const response = await fetch(/expense/${ selectedExpense }, { method: "GET" });
                 const data = await response.json();
                 console.log('Fetched expense data:', data);
-                
+
                 setTitle(data.expense.title);
                 setAmount(data.expense.amount);
                 setCategory(data.expense.category);
@@ -36,10 +36,10 @@ const UpdateExpense = ({ selectedExpense, onUpdateExpense }) => {
 
     const handleUpdate = async (e) => {
         e.preventDefault();
-        const updatedExpense = { title, amount, category, date, description, userId};
+        const updatedExpense = { title, amount, category, date, description, userId };
 
         try {
-            const response = await fetch(`/expense/${selectedExpense}`, {
+            const response = await fetch(/expense/${ selectedExpense }, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(updatedExpense),
@@ -65,28 +65,28 @@ const UpdateExpense = ({ selectedExpense, onUpdateExpense }) => {
             <h1>Update Expense</h1>
             <br />
             <input type="text" placeholder={title} value={title}
-                onChange={(e) => setTitle(e.target.value)}/>
-           <br/>
+                onChange={(e) => setTitle(e.target.value)} />
+            <br />
             <input type="number" placeholder={amount} value={amount} min='0'
-                onChange={(e) => setAmount(e.target.value)}/>
-            <br/>
-            
+                onChange={(e) => setAmount(e.target.value)} />
+            <br />
+
             <input className='desc-input' placeholder={description} value={description}
-                onChange={(e) => setDescription(e.target.value)}/>
+                onChange={(e) => setDescription(e.target.value)} />
             <br />
-            <label>Category: 
+            <label>Category:
                 <select value={category} onChange={(e) => setCategory(e.target.value)}>
-                <option value="Housing">Housing</option>
-                <option value="Food">Food</option>
-                <option value="Health">Health</option>
-                <option value="Transportation">Transportation</option>
-                <option value="Entertainment">Entertainment</option>
-                <option value="Clothing">Clothing</option>
-                <option value="Other">Other</option>
-            </select></label>
+                    <option value="Housing">Housing</option>
+                    <option value="Food">Food</option>
+                    <option value="Health">Health</option>
+                    <option value="Transportation">Transportation</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Other">Other</option>
+                </select></label>
             <br />
-            <label>Date: &nbsp; 
-                <input type="date" value={date} onChange={(e) => setDate(e.target.value)}/>
+            <label>Date: &nbsp;
+                <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
                 &nbsp;&nbsp;{moment(date).format('ll')}
             </label>
             <br />
