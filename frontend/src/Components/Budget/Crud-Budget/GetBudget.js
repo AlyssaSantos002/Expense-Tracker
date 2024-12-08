@@ -1,24 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
-const GetBudget = () => {
-  const [budget, setBudget] = useState('');
+const GetBudget = ({budget, setBudget}) => {
 
   const handleBudget = async () => {
     try {
       const userID = localStorage.getItem('userId');
 
       const response = await fetch(`/budget?userId=${userID}`, { method: 'GET' });
-
+      const result = await response.json();
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      console.log(result.budget.amount);
-      if (!result.budget.amount){
-        setBudget(0);
       }else{
-        setBudget(result.budget.amount);
+        setBudget(result.budget);
       }
       
 
@@ -34,7 +27,7 @@ const GetBudget = () => {
 
   return (
     <div>
-      <h1>{budget ? `Budget: $${budget}` : 'Loading...'}</h1>
+      <h1>Budget: ${budget.amount}</h1>
     </div>
   );
 };

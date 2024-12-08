@@ -31,9 +31,10 @@ const Expense = () => {
     setSelectedExpense(null); // Clear selected expense
   };
 
+
   return (
     <>
-    <NavBarComponent/>
+      <NavBarComponent />
       <div className="expense">
         <ExpensesList
           expenses={expenses}
@@ -44,55 +45,56 @@ const Expense = () => {
 
         {console.log(`Selected expense: ${selectedExpense}`)}
 
-        <DeleteExpense
-          selectedExpense={selectedExpense}
-          setExpenses={setExpenses}
-        />
+        <div className='expense-btns'>
+          <DeleteExpense
+            setSelectedExpense={setSelectedExpense}
+            selectedExpense={selectedExpense}
+            setExpenses={setExpenses}
+          />
 
 
-        <button className='update-btn' onClick={() => setShowUpdateExpense(true)}>Update Selected Expense</button>
-        {showUpdateExpense && (
-          <div className="modal-overlay">
-            <div className="modal-content">
-              <button
-                className="close-modal"
-                onClick={() => setShowUpdateExpense(false)}
-              >
-                <i className="bi bi-x-square"></i>
-              </button>
-              <div className='expense-form'>
-                <UpdateExpense
-                  selectedExpense={selectedExpense}
-                  onUpdateExpense={updateExpense}
-                />
-              </div>
+          <button className='update-btn' onClick={() => setShowUpdateExpense(true)}>Update Selected Expense</button>
+          {showUpdateExpense && (
+            <div className="modal-overlay">
+              <div className="modal-content">
+                <button className="close-modal" onClick={() => setShowUpdateExpense(false)}>
+                  <i className="bi bi-x-square"></i>
+                </button>
+                <div className='expense-form'>
+                  <UpdateExpense
+                    selectedExpense={selectedExpense}
+                    onUpdateExpense={updateExpense}
+                  />
+                </div>
 
-            </div>
-          </div>
-        )}
-
-
-        <button className='add-btn' onClick={() => setShowAddExpense(true)}>Add Expense</button>
-        {showAddExpense && (
-          <div className="modal-overlay">
-            <div className="modal-content">
-              <button
-                className="close-modal"
-                onClick={() => setShowAddExpense(false)}
-              >
-                <i className="bi bi-x-square"></i>
-              </button>
-              <div className="expense-form">
-                <AddExpense
-                  onAddExpense={(expense) => {
-                    addExpense(expense);
-                    setShowAddExpense(false); // Close modal after adding expense
-                  }}
-                />
               </div>
             </div>
-          </div>
-        )}
+          )}
+
+
+          <button className='add-btn' onClick={() => setShowAddExpense(true)}>Add Expense</button>
+          {showAddExpense && (
+            <div className="modal-overlay">
+              <div className="modal-content">
+                <button
+                  className="close-modal"
+                  onClick={() => setShowAddExpense(false)}
+                >
+                  <i className="bi bi-x-square"></i>
+                </button>
+                <div className="expense-form">
+                  <AddExpense
+                    onAddExpense={(expense) => {
+                      addExpense(expense);
+                      setShowAddExpense(false); // Close modal after adding expense
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
       </div>
     </>
   );

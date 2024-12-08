@@ -11,6 +11,7 @@ const AddExpense = ({ onAddExpense }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const userId = localStorage.getItem('userId'); // Get userId from localStorage
+
         const newExpense = { title, amount, description, date, category, userId };
 
         try {
@@ -43,7 +44,7 @@ const AddExpense = ({ onAddExpense }) => {
             <input type="text" placeholder="Title" value={title}
                 onChange={(e) => setTitle(e.target.value)} required
             /><br />
-            <input type="number" placeholder="Amount" value={amount}
+            <input type="number" placeholder="Amount" value={amount} min='0'
                 onChange={(e) => setAmount(e.target.value)} required
             /><br />
             <input type="text" placeholder="Description" value={description}

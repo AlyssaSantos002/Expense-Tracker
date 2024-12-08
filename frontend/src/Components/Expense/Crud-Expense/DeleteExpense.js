@@ -1,6 +1,6 @@
 import React from "react";
 
-const DeleteExpense = ({ selectedExpense, setExpenses }) => {
+const DeleteExpense = ({ setSelectedExpense, selectedExpense, setExpenses }) => {
   const handleDeleteExpense = async () => {
     try {
       if (!selectedExpense) {
@@ -14,17 +14,19 @@ const DeleteExpense = ({ selectedExpense, setExpenses }) => {
         method: "DELETE",
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
       const result = await response.json();
-      console.log("Delete response:", result);
+      
+      if (response.ok) {
+        alert('Expense deleted successfully!');
+      }else{
+        alert(result.message || 'Failed to delete expense.');
+      }
 
       // Update the expenses state
       setExpenses((prevExpenses) =>
         prevExpenses.filter((expense) => expense._id !== selectedExpense)
       );
+      setSelectedExpense(null);
     } catch (error) {
       console.error("Error deleting expense:", error);
     }

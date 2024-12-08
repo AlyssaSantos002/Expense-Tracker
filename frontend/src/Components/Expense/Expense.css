@@ -1,15 +1,12 @@
   .expense {
       color: white;
+      display: flex;
       flex-wrap: wrap;
+      flex-direction: column;
+      justify-items: center;
       width: 80%;
       height: 100%;
-      border-radius: 10px;
-      padding: 80px;
-      margin-left: 100px;
-      margin-right: auto;
-      padding-top: 30px;
       position: relative;
-      margin-top: 100px;
   }
 
   .expense-form {
@@ -19,6 +16,9 @@
   input {
       padding: 5px 5px 5px 5px;
   }
+  .desc-input{
+    padding: 10px;
+  }
 
   .expenses-list {
       min-width: 900px;
@@ -26,9 +26,7 @@
       margin-bottom: 20px;
   }
 
-  .expenses-list,
-  th,
-  td {
+  .expenses-list, th, td {
       border-collapse: collapse;
       padding: 15px 10px 10px 10px;
       border: 1px solid white;
@@ -40,6 +38,7 @@
       max-width: 200px;
       text-wrap: wrap;
   }
+
 
   .modal-overlay {
       position: fixed;
@@ -82,7 +81,7 @@
       color: black;
   }
 
-  .add-expense-form {
+  .add-expense-form, .update-expense-form, .add-budget-form, .update-budget-form {
       display: flex;
       justify-content: center;
       flex-direction: column;

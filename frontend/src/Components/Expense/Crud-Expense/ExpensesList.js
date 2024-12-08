@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import moment from "moment";
 
 const ExpensesList = ({ expenses, setExpenses, setSelectedExpense, selectedExpense }) => {
   const [category, setCategory] = useState("");
@@ -27,41 +28,35 @@ const ExpensesList = ({ expenses, setExpenses, setSelectedExpense, selectedExpen
     };
 
     handleGetExpenses();
-    
+
   }, [category, setCategory]);
 
   const handleRadioChange = (expenseId) => {
-    console.log("Selected Expense ID:", expenseId); 
+    console.log("Selected Expense ID:", expenseId);
     setSelectedExpense(expenseId);
-  };
-
-  const formatDate = (dateString) => {
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    const date = new Date(dateString);
-    return new Intl.DateTimeFormat("en-US", options).format(date);
   };
 
   return (
     <div>
       <div className="expense-info">
-      <h1>Expenses</h1><br/>
-      <label>
-        <b>CATEGORY:</b>
-        <select
-          id="category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        >
-          <option value="">-- All Categories --</option>
-          <option value="Housing">Housing</option>
-          <option value="Food">Food</option>
-          <option value="Health">Health</option>
-          <option value="Transportation">Transportation</option>
-          <option value="Entertainment">Entertainment</option>
-          <option value="Clothing">Clothing</option>
-          <option value="Other">Other</option>
-        </select>
-      </label>
+        <h1>Expenses</h1><br />
+        <label>
+          <b>CATEGORY:</b>
+          <select
+            id="category"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="">-- All Categories --</option>
+            <option value="Housing">Housing</option>
+            <option value="Food">Food</option>
+            <option value="Health">Health</option>
+            <option value="Transportation">Transportation</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
       </div>
       <table className="expenses-list">
         <thead>
@@ -78,16 +73,13 @@ const ExpensesList = ({ expenses, setExpenses, setSelectedExpense, selectedExpen
           {expenses.map((expense) => (
             <tr key={expense._id}>
               <td>
-                <input
-                  type="radio"
-                  name="expense"
-                  checked={selectedExpense === expense._id}
+                <input type="radio" name="expense" checked={selectedExpense === expense._id}
                   onChange={() => handleRadioChange(expense._id)}
                 />
               </td>
               <td>{expense.title}</td>
-              <td>${expense.amount}</td>
-              <td>{formatDate(expense.date)}</td>
+              <td>${parseFloat(expense.amount).toFixed(2)}</td>
+              <td>{moment(expense.date).format("LL")}</td>
               <td className="desc">{expense.description}</td>
               <td>{expense.category}</td>
             </tr>

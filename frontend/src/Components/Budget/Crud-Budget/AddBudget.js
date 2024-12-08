@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AddBudget = () =>{
+const AddBudget = ({onAddBudget}) =>{
     const [amount, setAmount] = useState('');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
@@ -19,14 +19,18 @@ const AddBudget = () =>{
             });
 
             const result = await response.json();
+            console.log({result});
             if (response.ok) {
                 alert('Budget added successfully!');
                 setAmount('');
                 setStartDate('');
                 setEndDate('');
+                onAddBudget(result.budget);
             } else {
                 alert(result.message || 'Failed to add budget.');
             }
+
+            
         } catch (error) {
             console.error('Error adding budget:', error);
         }
@@ -35,18 +39,19 @@ const AddBudget = () =>{
     
     return(
         <div>
-            <form onSubmit={handleSubmit}>
-                <input type='number' placeholder='Budget Amount' value={amount}
+            <form onSubmit={handleSubmit} className='add-budget-form'>
+                <h1>Add Budget</h1><br/>
+                <input type='number' placeholder='Budget Amount' value={amount} min="0"
                     onChange={(e) => setAmount(e.target.value)} required
-                /><br/><br/>
+                /><br/>
                 <label>Start Date: <input type='date' placeholder='Start Date' value={startDate}
                     onChange={(e) => setStartDate(e.target.value)} required
                 /></label>
-                <br/><br/>
+                <br/>
                 <label>End Date: <input type='date' placeholder='End Date' value={endDate}
                     onChange={(e) => setEndDate(e.target.value)} required
                 /></label>
-                <br/><br/>
+                <br/>
                 <button type='submit'>Add Budget</button>
             </form>
         </div>
