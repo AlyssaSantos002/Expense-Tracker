@@ -8,3 +8,46 @@ body, html {
   margin: 0;
   padding: 0;
 }
+
+.not-found-page h1, .unauthorized-page h1{
+  text-align: center;
+  padding-bottom: 50px;
+  font-size: 70px;
+  color: white;
+  font-weight: 700;
+  margin-top: 0px;
+}
+
+.not-found-page, .unauthorized-page{
+  padding: 0px 100px;
+}
+
+.unauthorized-page p, .not-found-page p{
+  color:white;
+  text-align: center;
+  font-size: 30px;
+  padding-bottom: 20px;
+}
+
+.not-found-page-links{
+  font-size: 30px;
+  color: white;
+}
+
+.unauthorized-page-links{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: white;
+  font-style: none;
+}
+
+.unauthorized-page-links p, .not-found-page-links p{
+  margin: 40px 40px;
+  font-size: 20px;
+  font-weight: 800;
+  color: black;
+  background-color: white;
+  padding: 10px 10px;
+  border-radius: 5px;
+}
