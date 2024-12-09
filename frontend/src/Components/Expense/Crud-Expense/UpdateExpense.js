@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 
-const UpdateExpense = ({ selectedExpense, onUpdateExpense }) => {
+const UpdateExpense = ({ selectedExpense, onUpdateExpense, setShowUpdateExpense }) => {
     const [title, setTitle] = useState('');
     const [amount, setAmount] = useState('');
     const [category, setCategory] = useState('');
@@ -30,6 +30,9 @@ const UpdateExpense = ({ selectedExpense, onUpdateExpense }) => {
 
         if (selectedExpense) {
             fetchExpense();
+        }else{
+            alert("Please select an expense");
+            setShowUpdateExpense(false);
         }
     }, [selectedExpense]);
 

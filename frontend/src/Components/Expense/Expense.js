@@ -64,6 +64,7 @@ const Expense = () => {
                   <UpdateExpense
                     selectedExpense={selectedExpense}
                     onUpdateExpense={updateExpense}
+                    setShowUpdateExpense={setShowUpdateExpense}
                   />
                 </div>
 
