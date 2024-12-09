@@ -2,11 +2,9 @@
     width: 500px;
 }
 
-.graph h2{
-    font-size: larger;
+.graph h1{
     width: 600px;
     text-align: left;
-    margin: 0px  40px 2px ;
+    margin: 0px  0px 2px ;
     padding-bottom: 20px;
-    border-bottom: 3px solid rgba(255, 255, 255, .2);
 }

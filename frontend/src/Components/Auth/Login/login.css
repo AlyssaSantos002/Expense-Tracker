@@ -26,6 +26,12 @@ body {
     padding: 30px 40px;
 }
 
+.title{
+    color: white;
+    text-align: center;
+    padding: 70px ;
+}
+
 .login h1 {
     font-size: 36px;
     text-align: center;

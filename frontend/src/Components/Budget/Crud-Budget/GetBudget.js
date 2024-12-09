@@ -25,11 +25,6 @@ const GetBudget = ({budget, setBudget}) => {
     handleBudget();
   }, []); // Empty dependency array ensures this runs once on mount
 
-  return (
-    <div>
-      <h1>Budget: ${budget.amount}</h1>
-    </div>
-  );
 };
 
 export default GetBudget;

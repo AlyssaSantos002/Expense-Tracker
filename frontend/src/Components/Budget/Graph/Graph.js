@@ -36,7 +36,7 @@ const Graph = () => {
                 label: 'Total Amount Spent',
                 data: Object.values(totalAmount),
                 backgroundColor: 'rgba(75, 192, 192, 0.2)', 
-                borderColor: 'rgba(75, 192, 192, 1)',
+                borderColor: 'black',
                 borderWidth: 1
             }
         ]
@@ -44,7 +44,7 @@ const Graph = () => {
 
     return (
         <div className="graph">
-            <h2>Expense Graph</h2>
+            <h1>Expense Graph</h1>
             <Bar data={Data} />
         </div>
     )

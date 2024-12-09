@@ -1,6 +1,6 @@
 .filter-option {
     display: flex;
-    border-bottom: 3px solid rgba(255, 255, 255, .2);
+    border-bottom: 3px solid  #004b49;
 }
 
 .filter-option select {
@@ -30,10 +30,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    border-bottom: 0.2px solid  #004b49;
     padding: 10px;
 }
 
+.filter-info li:last-child {
+    border-bottom: none;
+}
 .filter-category {
     flex: 1;
     text-align: left;

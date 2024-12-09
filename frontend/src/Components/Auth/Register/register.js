@@ -38,6 +38,7 @@ const Register = () => {
 
     return (
         <div className='login-container'>
+            <h1 className='title'>EXPENSE TRACKER</h1>
             <>
 
                 <div className='register'>

@@ -25,10 +25,10 @@ const Login = () => {
 
             const result = await response.json();
             if (response.ok) {
-                localStorage.setItem('userId', result.user._id); 
+                localStorage.setItem('userId', result.user._id);
                 localStorage.setItem('userEmail', result.user.email);
                 localStorage.setItem('userName', result.user.name);
-                
+
                 console.log(result);
                 window.location.href = '/home';
             } else {
@@ -41,7 +41,9 @@ const Login = () => {
 
 
     return (
+
         <div className='login-container'>
+            <h1 className='title'>EXPENSE TRACKER</h1>
             <>
                 <div className='login'>
                     <form onSubmit={handleSubmit}>

@@ -1,24 +1,35 @@
 .summary-info ul {
     list-style-type: none;
-    
     padding-right: 50px;
     padding-left: 50px;
+    margin-top: 20px;
 }
 
 .summary-info li {
     padding: 10px;
     display: flex;
+    border-bottom: 0.2px solid  #004b49;
+}
+
+.summary-info li:last-child{
+    border-bottom: none;
 }
 
 .summary-info .amount {
     margin-left: auto;
 }
 
+.summary-info li .category {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: medium;
+}
+
 .summary h2 {
     font-size: larger;
-    margin: 20px 40px 2px ;
+    margin: 20px 40px 2px;
     padding-bottom: 20px;
-    border-bottom: 3px solid rgba(255, 255, 255, .2);
+    border-bottom: 3px solid  #004b49;
 }
 
 .summary-info {

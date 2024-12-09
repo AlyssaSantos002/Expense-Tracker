@@ -1,28 +1,53 @@
 .budget {
     display: flex;
-    gap: 30px;
+    gap: 100px;
     justify-content: center;
 }
 
 .budget-container {
-    width: 600px;
+    width: 550px;
     height: 400px;
-    background-color: rgb(13, 13, 13);
-    border: 3px solid rgba(255, 255, 255, .2);
-    color: white;
+    background-color: #a4d3c7;
+    box-shadow: #0f3534;
+    color: #041414;
     border-radius: 10px;
     margin-top: 170px;
 }
 
 .graph-section {
-    width: 750px;
-    height: 350px;
-    background-color: rgb(13, 13, 13);
-    border: 3px solid rgba(255, 255, 255, .2);
-    color: white;
+    width: 600px;
+    height: 370px;
+    background-color: #a4d3c7;
+    box-shadow: #0f3534;
+    color: #041414;
     border-radius: 10px;
     padding: 30px 40px;
     margin: 80px;
     margin-left: auto;
     margin-right: auto;
 }
+
+.budget-top {
+    display: flex;
+    margin: 0px 20px;
+    margin-top: 10px;
+}
+
+.budget-btn {
+    margin-top: 20px;
+    margin-left: auto;
+    justify-content: end;
+}
+
+.budget-graph {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.budget-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 20px 30px;
+}
+

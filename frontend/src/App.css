@@ -1,6 +1,7 @@
  body {
   margin: 0;
-  background-color: black;
+  background: linear-gradient(to bottom, #164343, #2e7874, #498a8a);
+
   width: 100vw;
 }
 

@@ -6,6 +6,7 @@
       justify-items: center;
       width: 80%;
       height: 100%;
+      margin-top: 80px;
       position: relative;
   }
 
@@ -13,22 +14,33 @@
       color: black;
   }
 
+  .expense-top {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+  }
+
   input {
       padding: 5px 5px 5px 5px;
   }
-  .desc-input{
-    padding: 10px;
+
+  .desc-input {
+      padding: 10px;
   }
 
+
   .expenses-list {
-      min-width: 900px;
+      min-width: 1200px;
       margin-top: 25px;
       margin-bottom: 20px;
   }
 
-  .expenses-list, th, td {
+  .expenses-list,
+  th,
+  td {
       border-collapse: collapse;
-      padding: 15px 10px 10px 10px;
+      padding: 15px 10px 15px 10px;
       border: 1px solid white;
       margin-top: 30px;
   }
@@ -81,7 +93,10 @@
       color: black;
   }
 
-  .add-expense-form, .update-expense-form, .add-budget-form, .update-budget-form {
+  .add-expense-form,
+  .update-expense-form,
+  .add-budget-form,
+  .update-budget-form {
       display: flex;
       justify-content: center;
       flex-direction: column;
@@ -91,17 +106,20 @@
   .update-btn,
   .add-btn {
       margin-right: 20px;
-      background-color: rgb(33, 81, 147);
-      color: #fff;
+      background-color: #a4d3c7;
+      color: black;
       border-radius: 5px;
-      border-color: rgb(68, 135, 230);
-      margin-top: 30px;
+      border-color: #3ca4a1;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 30px;
   }
 
   .dlt-btn:hover,
   .update-btn:hover,
   .add-btn:hover {
-      background-color: rgb(68, 135, 230);
+      background-color: #24493b;
+      color: white;
   }
 
 

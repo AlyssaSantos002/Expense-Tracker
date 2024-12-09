@@ -13,7 +13,7 @@ const UpdateExpense = ({ selectedExpense, onUpdateExpense }) => {
     useEffect(() => {
         const fetchExpense = async () => {
             try {
-                const response = await fetch(/expense/${ selectedExpense }, { method: "GET" });
+                const response = await fetch(`/expense/${ selectedExpense }`, { method: "GET" });
                 const data = await response.json();
                 console.log('Fetched expense data:', data);
 
@@ -39,7 +39,7 @@ const UpdateExpense = ({ selectedExpense, onUpdateExpense }) => {
         const updatedExpense = { title, amount, category, date, description, userId };
 
         try {
-            const response = await fetch(/expense/${ selectedExpense }, {
+            const response = await fetch(`/expense/${ selectedExpense }`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(updatedExpense),

@@ -3,7 +3,7 @@ import moment from "moment";
 
 const ExpensesList = ({ expenses, setExpenses, setSelectedExpense, selectedExpense }) => {
   const [category, setCategory] = useState("");
-  
+
   useEffect(() => {
     const handleGetExpenses = async () => {
       try {
@@ -39,24 +39,27 @@ const ExpensesList = ({ expenses, setExpenses, setSelectedExpense, selectedExpen
   return (
     <div>
       <div className="expense-info">
-        <h1>Expenses</h1><br />
-        <label>
-          <b>CATEGORY:</b>
-          <select
-            id="category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            <option value="">-- All Categories --</option>
-            <option value="Housing">Housing</option>
-            <option value="Food">Food</option>
-            <option value="Health">Health</option>
-            <option value="Transportation">Transportation</option>
-            <option value="Entertainment">Entertainment</option>
-            <option value="Clothing">Clothing</option>
-            <option value="Other">Other</option>
-          </select>
-        </label>
+        <div className="expense-top">
+          <h1>Expenses</h1>
+          <label>
+            <b>CATEGORY:</b>
+            <select
+              id="category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              <option value="">-- All Categories --</option>
+              <option value="Housing">Housing</option>
+              <option value="Food">Food</option>
+              <option value="Health">Health</option>
+              <option value="Transportation">Transportation</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Other">Other</option>
+            </select>
+          </label>
+        </div>
+
       </div>
       <table className="expenses-list">
         <thead>
